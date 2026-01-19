@@ -20,6 +20,7 @@
 - [快速开始](./QUICK-START.md)：5 分钟快速部署与测试。
 - [实施指南](./README-实施指南.md)：完整架构、安装与配置说明。
 - [测试用例](./TEST-CASES.md)：17 个手动测试场景与验证清单。
+- [AI 自动化配置](./ai-setup.md)：供 AI 读取的自动配置步骤（含 JSON/YAML 附录）。
 - [项目概览](../README.md)：功能亮点、版本历史与整体入口。
 
 ## Quick Links (English)
@@ -27,6 +28,7 @@
 - [Quick Start](./QUICK-START.md): 5-minute setup and smoke tests.
 - [Implementation Guide](./README-实施指南.md): full architecture, install, and config.
 - [Test Cases](./TEST-CASES.md): 17 manual scenarios and checklists.
+- [AI Setup Guide](./ai-setup.md): machine-readable steps with JSON/YAML appendix.
 - [Project Overview](../README.md): main entry and release notes.
 
 ## 使用建议（中文）
