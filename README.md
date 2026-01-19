@@ -24,9 +24,10 @@
 
 | 文档 | 用途 | 适合人群 |
 |------|------|----------|
-| **[快速开始](./QUICK-START.md)** | 5分钟快速部署 | 首次使用 |
-| **[实施指南](./README-实施指南.md)** | 完整配置说明 | 详细部署 |
-| **[测试用例](./TEST-CASES.md)** | 17个测试场景 | 验证功能 |
+| **[文档索引](./docs/index.md)** | 文档入口与结构说明 | 所有用户 |
+| **[快速开始](./docs/QUICK-START.md)** | 5分钟快速部署 | 首次使用 |
+| **[实施指南](./docs/README-实施指南.md)** | 完整配置说明 | 详细部署 |
+| **[测试用例](./docs/TEST-CASES.md)** | 17个测试场景 | 验证功能 |
 | **[原始设计](./语音驱动的AI编码工作流：设计与实施完整指南.md)** | 架构设计 | 深入理解 |
 
 ---
@@ -44,7 +45,7 @@ exit && claude
 ~/.claude/scripts/notify.sh '测试' '通知测试' '测试' 'input'
 ```
 
-**详细步骤**: 查看 [快速开始指南](./QUICK-START.md)
+**详细步骤**: 查看 [快速开始指南](./docs/QUICK-START.md)
 
 ---
 
@@ -158,7 +159,7 @@ exit && claude
 cat ~/.claude/scripts/notify.log
 ```
 
-**完整测试**: 查看 [测试用例文档](./TEST-CASES.md)
+**完整测试**: 查看 [测试用例文档](./docs/TEST-CASES.md)
 
 ---
 
@@ -166,13 +167,13 @@ cat ~/.claude/scripts/notify.log
 
 ### 新手用户
 
-1. 阅读 [快速开始](./QUICK-START.md)
+1. 阅读 [快速开始](./docs/QUICK-START.md)
 2. 完成基础测试
 3. 尝试语音输入
 
 ### 进阶用户
 
-1. 阅读 [实施指南](./README-实施指南.md)
+1. 阅读 [实施指南](./docs/README-实施指南.md)
 2. 自定义通知配置
 3. 添加 Hookify 规则
 
@@ -195,7 +196,7 @@ cat ~/.claude/scripts/notify.log
 | Hooks 未生效 | 验证 JSON 格式 / 重启 Claude Code |
 | 测试失败 | 运行 `./run_tests.sh` 查看具体失败项 |
 
-**详细排查**: 查看 [实施指南 - 故障排查](./README-实施指南.md#故障排查)
+**详细排查**: 查看 [实施指南 - 故障排查](./docs/README-实施指南.md#故障排查)
 
 ---
 
@@ -252,6 +253,6 @@ MIT License
 ---
 
 **快速链接**:
-- 📖 [快速开始](./QUICK-START.md)
-- 📚 [实施指南](./README-实施指南.md)
-- 🧪 [测试用例](./TEST-CASES.md)
+- 📖 [快速开始](./docs/QUICK-START.md)
+- 📚 [实施指南](./docs/README-实施指南.md)
+- 🧪 [测试用例](./docs/TEST-CASES.md)
