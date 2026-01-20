@@ -195,6 +195,8 @@ cat ~/.claude/scripts/notify.log
 
 **前置条件**:
 - Hookify 插件已启用
+- `PreToolUse` 钩子已写入 `~/.claude/settings.json`
+- `.claude/hookify.voice-safety-rm.local.md` 已指向规则文件
 - `hookify.voice-safety-rm.local.md` 规则已创建且启用
 
 **测试步骤**:
@@ -221,6 +223,8 @@ cat ~/.claude/scripts/notify.log
 
 **前置条件**:
 - Hookify 插件已启用
+- `PreToolUse` 钩子已写入 `~/.claude/settings.json`
+- `.claude/hookify.voice-safety-git.local.md` 已指向规则文件
 - `hookify.voice-safety-git.local.md` 规则已创建且启用
 
 **测试步骤**:
@@ -247,6 +251,8 @@ cat ~/.claude/scripts/notify.log
 
 **前置条件**:
 - Hookify 插件已启用
+- `PreToolUse` 钩子已写入 `~/.claude/settings.json`
+- `.claude/hookify.voice-safety-env.local.md` 已指向规则文件
 - `hookify.voice-safety-env.local.md` 规则已创建且启用
 
 **测试步骤**:
@@ -609,5 +615,5 @@ chmod +x run_tests.sh
 
 ---
 
-**测试文档版本**: v2.2  
+**测试文档版本**: v2.3  
 **最后更新**: 2026-01-20

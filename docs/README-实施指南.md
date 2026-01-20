@@ -2,7 +2,7 @@
 
 > 基于 Claude Code + Hookify 的多模态通知系统
 
-**版本**: 2.2  
+**版本**: 2.3  
 **更新日期**: 2026-01-20  
 **适用平台**: macOS 10.10+
 
@@ -173,6 +173,18 @@ chmod +x ~/.claude/scripts/notify.sh
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "HOOKIFY_PRE_TOOL_USE_CMD",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "bash",
@@ -201,6 +213,10 @@ chmod +x ~/.claude/scripts/notify.sh
 }
 ```
 
+**说明**:
+- `HOOKIFY_PRE_TOOL_USE_CMD` 替换为 Hookify 安装输出的 PreToolUse 命令。
+- Hookify 会在 PreToolUse 阶段拦截危险命令，缺少该钩子将无法生效。
+
 ### 步骤 4: 创建 Hookify 安全规则
 
 三个安全规则文件已创建在 `~/.claude/` 目录：
@@ -208,6 +224,15 @@ chmod +x ~/.claude/scripts/notify.sh
 1. `hookify.voice-safety-rm.local.md` - 阻止危险删除
 2. `hookify.voice-safety-git.local.md` - 阻止强制 Git 操作
 3. `hookify.voice-safety-env.local.md` - 警告敏感文件操作
+
+Hookify 默认从项目目录的 `.claude/` 读取规则。若规则放在 `~/.claude/`，建议建立符号链接：
+
+```bash
+mkdir -p .claude
+ln -s ~/.claude/hookify.voice-safety-rm.local.md .claude/
+ln -s ~/.claude/hookify.voice-safety-git.local.md .claude/
+ln -s ~/.claude/hookify.voice-safety-env.local.md .claude/
+```
 
 **注意**: Hookify 规则即时生效，无需重启。
 
@@ -415,11 +440,19 @@ osascript -e "output volume of (get volume settings)"
 # 查看规则
 /hookify:list
 
-# 检查文件
+# 检查 PreToolUse 钩子
+jq '.hooks.PreToolUse' ~/.claude/settings.json
+
+# 检查项目内规则链接
+ls -la .claude/hookify.*.local.md
+
+# 检查规则内容
 cat ~/.claude/hookify.voice-safety-rm.local.md
 ```
 
 **解决**:
+- 确认 `PreToolUse` 已配置并指向 Hookify
+- 确认 `.claude/` 下规则文件已链接或复制
 - 确认文件名: `hookify.*.local.md`
 - 确认 `enabled: true`
 - 使用 `/hookify:configure` 管理规则
@@ -512,6 +545,9 @@ pytest && \
     ├── hookify.voice-safety-rm.local.md
     ├── hookify.voice-safety-git.local.md
     └── hookify.voice-safety-env.local.md
+
+./.claude/                                   # 项目内规则链接（可选）
+└── hookify.*.local.md -> ~/.claude/...
 ```
 
 ---

@@ -200,6 +200,12 @@ say "测试"
 # 查看规则
 /hookify:list
 
+# 检查 PreToolUse 钩子
+jq '.hooks.PreToolUse' ~/.claude/settings.json
+
+# 检查项目内规则链接
+ls -la .claude/hookify.*.local.md
+
 # 检查规则文件
 ls -la ~/.claude/hookify.*.local.md
 ```
@@ -310,6 +316,7 @@ action: block
 - [ ] `~/.claude/scripts/notify.sh` 文件存在且可执行
 - [ ] `~/.claude/settings.json` 包含 hooks 配置
 - [ ] `~/.claude/hookify.*.local.md` 三个规则文件存在
+- [ ] `.claude/hookify.*.local.md` 已建立符号链接
 - [ ] 手动测试三种通知级别都正常
 - [ ] `/hookify:list` 显示三个规则
 - [ ] 重启过 Claude Code
@@ -326,5 +333,5 @@ action: block
 
 ---
 
-**快速开始指南版本**: v2.2  
+**快速开始指南版本**: v2.3  
 **最后更新**: 2026-01-20

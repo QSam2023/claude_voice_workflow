@@ -2,7 +2,7 @@
 
 > 基于 Claude Code + Hookify 的多模态通知系统
 
-**版本**: 2.2
+**版本**: 2.3
 **更新日期**: 2026-01-20
 
 ---
@@ -68,6 +68,8 @@ exit && claude
 - ✅ 阻止 `git push -f` 强制推送  
 - ⚠️ 警告 `.env` 文件提交
 
+**注意**: Hookify 默认从项目目录的 `.claude/` 读取规则，可在项目内建立符号链接指向 `~/.claude`。
+
 ---
 
 ## 📁 项目结构
@@ -82,6 +84,9 @@ exit && claude
     ├── hookify.voice-safety-rm.local.md
     ├── hookify.voice-safety-git.local.md
     └── hookify.voice-safety-env.local.md
+
+./.claude/                                # 项目内规则链接（可选）
+└── hookify.*.local.md -> ~/.claude/...
 ```
 
 ---
@@ -232,6 +237,10 @@ MIT License
 ---
 
 ## 📊 版本历史
+
+### v2.3 (2026-01-20)
+- 🛡️ 补充 Hookify 规则的项目路径说明
+- 📝 更新 PreToolUse 配置与规则链接指引
 
 ### v2.2 (2026-01-20)
 - 🧪 测试脚本提示 notify.sh 的 `-group` 风险

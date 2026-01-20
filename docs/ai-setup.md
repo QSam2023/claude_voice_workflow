@@ -163,6 +163,10 @@ claude
 
 - 中文：运行时资产必须写入 `~/.claude`，不要写入仓库。
 - English: Runtime assets must live under `~/.claude`, not inside the repo.
+- 中文：Hookify 规则会在项目 `.claude/` 查找，需建立符号链接指向 `~/.claude`。
+- English: Hookify rules are read from project `.claude/`, link them to `~/.claude`.
+- 中文：`HOOKIFY_PRE_TOOL_USE_CMD` 需替换为 Hookify 安装指引给出的命令。
+- English: Replace `HOOKIFY_PRE_TOOL_USE_CMD` with the Hookify PreToolUse command.
 - 中文：如发现现有 hooks，需合并而非覆盖。
 - English: Merge with existing hooks instead of overwriting.
 
@@ -170,13 +174,14 @@ claude
 
 ```json
 {
-  "version": "1.0",
+  "version": "1.1",
   "platform": "macOS",
   "requires": ["homebrew", "claude_code"],
   "paths": {
     "notify_script": "~/.claude/scripts/notify.sh",
     "settings": "~/.claude/settings.json",
-    "hookify_rules": "~/.claude"
+    "hookify_rules": "~/.claude",
+    "hookify_project_rules": ".claude"
   },
   "steps": [
     {
@@ -223,6 +228,17 @@ claude
       ]
     },
     {
+      "id": "link_hookify_rules",
+      "type": "command",
+      "description": "Link Hookify rules into project .claude",
+      "commands": [
+        "mkdir -p .claude",
+        "ln -s ~/.claude/hookify.voice-safety-rm.local.md .claude/",
+        "ln -s ~/.claude/hookify.voice-safety-git.local.md .claude/",
+        "ln -s ~/.claude/hookify.voice-safety-env.local.md .claude/"
+      ]
+    },
+    {
       "id": "merge_settings",
       "type": "json_merge",
       "description": "Merge hooks into ~/.claude/settings.json",
@@ -249,6 +265,18 @@ claude
                 "type": "command",
                 "command": "~/.claude/scripts/notify.sh '🔔 需要您的输入' 'Claude 正在等待您的响应，请回到终端' '需要输入，请回到终端' 'input'",
                 "timeout": 15
+              }
+            ]
+          }
+        ],
+        "PreToolUse": [
+          {
+            "matcher": "bash",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "HOOKIFY_PRE_TOOL_USE_CMD",
+                "timeout": 10
               }
             ]
           }
@@ -297,7 +325,7 @@ claude
 ## YAML 附录 / YAML Appendix
 
 ```yaml
-version: "1.0"
+version: "1.1"
 platform: "macOS"
 requires:
   - homebrew
@@ -306,6 +334,7 @@ paths:
   notify_script: "~/.claude/scripts/notify.sh"
   settings: "~/.claude/settings.json"
   hookify_rules: "~/.claude"
+  hookify_project_rules: ".claude"
 steps:
   - id: install_notifier
     type: command
@@ -362,6 +391,14 @@ steps:
           ---
 
           语音安全：检测到敏感文件操作。
+  - id: link_hookify_rules
+    type: command
+    description: Link Hookify rules into project .claude
+    commands:
+      - mkdir -p .claude
+      - ln -s ~/.claude/hookify.voice-safety-rm.local.md .claude/
+      - ln -s ~/.claude/hookify.voice-safety-git.local.md .claude/
+      - ln -s ~/.claude/hookify.voice-safety-env.local.md .claude/
   - id: merge_settings
     type: json_merge
     description: Merge hooks into ~/.claude/settings.json
@@ -380,6 +417,12 @@ steps:
             - type: command
               command: "~/.claude/scripts/notify.sh '🔔 需要您的输入' 'Claude 正在等待您的响应，请回到终端' '需要输入，请回到终端' 'input'"
               timeout: 15
+      PreToolUse:
+        - matcher: "bash"
+          hooks:
+            - type: command
+              command: "HOOKIFY_PRE_TOOL_USE_CMD"
+              timeout: 10
       PostToolUse:
         - matcher: "bash"
           hooks:
