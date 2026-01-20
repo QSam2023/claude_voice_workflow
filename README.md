@@ -2,8 +2,8 @@
 
 > 基于 Claude Code + Hookify 的多模态通知系统
 
-**版本**: 2.1
-**更新日期**: 2026-01-19
+**版本**: 2.2
+**更新日期**: 2026-01-20
 
 ---
 
@@ -192,6 +192,7 @@ cat ~/.claude/scripts/notify.log
 |------|----------|
 | 通知未显示 | **重要**: 检查系统设置 → 通知 → Terminal → 开启所有权限 |
 | 通知有声音但无横幅 | 确保横幅样式设为"横幅"，不是"无" |
+| 提示 Removing previously sent notification | 移除 `notify.sh` 中的 `-group` 并过滤该提示 |
 | 语音不播放 | 测试 `say` 命令 / 确认级别非 stop |
 | Hookify 不生效 | 运行 `/hookify:list` / 检查规则文件 |
 | Hooks 未生效 | 验证 JSON 格式 / 重启 Claude Code |
@@ -231,6 +232,11 @@ MIT License
 ---
 
 ## 📊 版本历史
+
+### v2.2 (2026-01-20)
+- 🧪 测试脚本提示 notify.sh 的 `-group` 风险
+- 📝 增加通知被替换的排查说明
+- 📚 更新实施指南与快速开始
 
 ### v2.1 (2026-01-19)
 - 🐛 修复通知脚本 group 参数导致的通知替换问题

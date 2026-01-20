@@ -170,6 +170,20 @@ terminal-notifier -list ALL
    - 检查是否开启了"勿扰模式"或"专注模式"
    - 重启 Terminal 应用
 
+### 问题：通知被替换或出现 Removing previously sent notification
+
+**原因**: notify.sh 使用了 `-group` 参数，terminal-notifier 会替换同组通知。
+
+**解决**:
+```bash
+# 移除 -group 参数，并过滤提示信息
+terminal-notifier \
+    -title "$TITLE" \
+    -message "$MESSAGE" \
+    -sound "$SOUND_NAME" \
+    2>&1 | grep -v "Removing previously sent notification"
+```
+
 ### 问题：语音不播放
 
 ```bash
@@ -312,5 +326,5 @@ action: block
 
 ---
 
-**快速开始指南版本**: v2.0  
-**最后更新**: 2026-01-19
+**快速开始指南版本**: v2.2  
+**最后更新**: 2026-01-20

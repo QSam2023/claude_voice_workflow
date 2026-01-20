@@ -2,8 +2,8 @@
 
 > 基于 Claude Code + Hookify 的多模态通知系统
 
-**版本**: 2.0  
-**更新日期**: 2026-01-19  
+**版本**: 2.2  
+**更新日期**: 2026-01-20  
 **适用平台**: macOS 10.10+
 
 ---
@@ -381,7 +381,19 @@ cat ~/.claude/scripts/notify.log
 - 安装 terminal-notifier: `brew install terminal-notifier`
 - 检查系统通知权限: 系统设置 → 通知 → Terminal
 
-### 问题 2: 语音不播放
+### 问题 2: 通知被替换或出现 Removing previously sent notification
+
+**诊断**:
+```bash
+# 检查 notify.sh 是否使用 -group
+grep -n -- "-group" ~/.claude/scripts/notify.sh
+```
+
+**解决**:
+- 移除 terminal-notifier 的 `-group` 参数
+- 过滤提示信息: `2>&1 | grep -v "Removing previously sent notification"`
+
+### 问题 3: 语音不播放
 
 **诊断**:
 ```bash
@@ -396,7 +408,7 @@ osascript -e "output volume of (get volume settings)"
 - 确认音量未静音
 - 确认使用 `input` 或 `error` 级别 (Stop 无语音)
 
-### 问题 3: Hookify 规则不生效
+### 问题 4: Hookify 规则不生效
 
 **诊断**:
 ```bash
@@ -412,7 +424,7 @@ cat ~/.claude/hookify.voice-safety-rm.local.md
 - 确认 `enabled: true`
 - 使用 `/hookify:configure` 管理规则
 
-### 问题 4: Hooks 未生效
+### 问题 5: Hooks 未生效
 
 **诊断**:
 ```bash
