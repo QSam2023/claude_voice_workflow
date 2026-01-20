@@ -318,6 +318,7 @@ action: block
 - [ ] `~/.claude/hookify.*.local.md` 三个规则文件存在
 - [ ] `.claude/hookify.*.local.md` 已建立符号链接
 - [ ] 手动测试三种通知级别都正常
+- [ ] 执行 `./run_comprehensive_tests.sh` 完成综合检查
 - [ ] `/hookify:list` 显示三个规则
 - [ ] 重启过 Claude Code
 
@@ -333,5 +334,5 @@ action: block
 
 ---
 
-**快速开始指南版本**: v2.3  
+**快速开始指南版本**: v2.4  
 **最后更新**: 2026-01-20

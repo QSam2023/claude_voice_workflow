@@ -2,7 +2,7 @@
 
 > 基于 Claude Code + Hookify 的多模态通知系统
 
-**版本**: 2.3  
+**版本**: 2.4  
 **更新日期**: 2026-01-20  
 **适用平台**: macOS 10.10+
 
@@ -245,6 +245,15 @@ exit
 # 重新启动
 claude
 ```
+
+### 步骤 6: 运行综合测试脚本
+
+```bash
+# 会触发通知与语音播放
+./run_comprehensive_tests.sh
+```
+
+日志输出位置：`~/.claude/test-logs/`
 
 ---
 
@@ -548,6 +557,8 @@ pytest && \
 
 ./.claude/                                   # 项目内规则链接（可选）
 └── hookify.*.local.md -> ~/.claude/...
+
+./run_comprehensive_tests.sh                 # 综合测试脚本
 ```
 
 ---

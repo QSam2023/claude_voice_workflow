@@ -543,6 +543,22 @@ wait
 
 ---
 
+## 综合测试脚本
+
+运行综合测试脚本（含手动观察）：
+
+```bash
+./run_comprehensive_tests.sh
+```
+
+流程说明:
+- 发送 Stop/Input/Error 三级通知
+- 进行中英文语音播放
+- 提示 Hookify 手动拦截步骤
+- 输出日志到 `~/.claude/test-logs/`
+
+---
+
 ## 自动化测试脚本（可选）
 
 创建 `run_tests.sh`:
@@ -615,5 +631,5 @@ chmod +x run_tests.sh
 
 ---
 
-**测试文档版本**: v2.3  
+**测试文档版本**: v2.4  
 **最后更新**: 2026-01-20
